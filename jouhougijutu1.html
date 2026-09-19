@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>夏季休暇中の出来事</title>
+  <style>
+    :root {
+      --paper: #ffffff;
+      --ink: #1f2933;
+      --accent: #2f5d8a;
+      --faint: #8a95a3;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #161a1f;
+        --ink: #e6e9ed;
+        --accent: #7fa9d4;
+        --faint: #6b7683;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic",
+        "Meiryo", sans-serif;
+      font-size: 1rem;
+      line-height: 1.9;
+    }
+
+    main {
+      max-width: 40rem;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 4rem;
+    }
+
+    h1 {
+      margin: 0 0 2.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--accent);
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: 0.02em;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    /* 段落の間を1行分あける */
+    p + p {
+      margin-top: 1.9em;
+    }
+
+    /* 署名: 本文から2行分あけて、小さく薄い文字で表示 */
+    .signature {
+      margin-top: 3.8rem;
+      color: var(--faint);
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding: 2.5rem 1.25rem 3rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        color: #000;
+      }
+
+      h1 {
+        color: #000;
+        border-color: #000;
+      }
+
+      .signature {
+        color: #666;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>夏季休暇中の出来事</h1>
+
+    <p>夏季休暇中に、大学で開講されていたMOS講座に参加しました。</p>
+
+    <p>基礎的な操作が中心ではありますが、4日間の短期集中勉強を経て、無事合格することができました。</p>
+
+    <p>現在はIT業界にとても興味があるので、今回受験したMOSよりも少し応用的な技術も学んでみたいと思っています。</p>
+
+    <p class="signature">吉田</p>
+  </main>
+</body>
+</html>
