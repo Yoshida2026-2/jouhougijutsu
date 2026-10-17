@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>はじめてのreveal.js(5枚版)</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reset.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/monokai.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --accent: #38bdf8;
+    --accent2: #f472b6;
+    --accent3: #facc15;
+    --muted: #94a3b8;
+    --r-main-font: "Noto Sans JP", sans-serif;
+    --r-heading-font: "Noto Sans JP", sans-serif;
+    --r-code-font: "JetBrains Mono", monospace;
+  }
+  .reveal-viewport { background: linear-gradient(135deg, #0f172a, #1e1b4b); }
+  .reveal { font-family: var(--r-main-font); font-size: 36px; color: #e2e8f0; }
+  .reveal h1, .reveal h2 { font-weight: 900; text-transform: none; color: #fff; letter-spacing: .02em; }
+  .reveal h1 { font-size: 2.3em; line-height: 1.25; }
+  .reveal h2 { font-size: 1.5em; margin-bottom: .5em; }
+  .reveal h2::after {
+    content: ""; display: block; width: 90px; height: 6px; margin: 12px auto 0;
+    border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+  .grad {
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .sub { color: var(--muted); font-size: .6em; }
+  .tiny { font-size: .55em; color: var(--muted); }
+  .small { font-size: .7em; }
+
+  .reveal p code {
+    background: rgba(255,255,255,.12); padding: 2px 8px; border-radius: 6px;
+    font-family: var(--r-code-font); font-size: .85em; color: var(--accent3);
+  }
+  kbd {
+    display: inline-block; min-width: 1.8em; padding: 3px 12px;
+    background: #f8fafc; color: #0f172a; border-radius: 8px;
+    border-bottom: 5px solid #94a3b8; font-family: var(--r-code-font);
+    font-weight: 700; font-size: .85em; text-align: center;
+  }
+
+  /* ステップ */
+  .steps { list-style: none; margin: 0 auto; padding: 0; width: 88%; counter-reset: s; }
+  .steps li {
+    counter-increment: s; display: flex; align-items: center; gap: 18px;
+    background: rgba(255,255,255,.06); border-left: 8px solid var(--accent);
+    border-radius: 12px; padding: 14px 20px; margin: 16px 0; font-size: .85em; text-align: left;
+  }
+  .steps li::before {
+    content: counter(s); flex: none; width: 52px; height: 52px; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 900; color: #0f172a;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+  }
+
+  /* カード */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card {
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14);
+    border-radius: 16px; padding: 18px 12px; font-size: .62em; text-align: center;
+  }
+  .card .emoji { font-size: 1.9em; display: block; margin-bottom: 4px; }
+  .card b { color: var(--accent3); display: block; font-size: 1.1em; margin-bottom: 4px; }
+  .card code { font-family: var(--r-code-font); font-size: .8em; color: var(--accent); }
+
+  /* コード */
+  .reveal pre { width: 100%; font-size: .5em; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,.5); }
+  .reveal pre code { padding: 20px 24px; border-radius: 12px; max-height: 520px; }
+
+  .keys { display: flex; justify-content: center; gap: 28px; margin: 6px 0 22px; font-size: .62em; }
+  .keys div { text-align: center; }
+  .keys span { display: block; margin-top: 8px; color: #e2e8f0; }
+  .check { list-style: none; padding: 0; margin: 0 auto; width: 85%; }
+  .check li { font-size: .72em; margin: 10px 0; text-align: left; }
+  .check li::before { content: "✅ "; }
+</style>
+</head>
+
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- 1. タイトル -->
+    <section data-background-gradient="linear-gradient(135deg,#0f172a,#312e81)">
+      <p class="sub">初心者向け・5枚で完結</p>
+      <h1>はじめての<br><span class="grad">reveal.js</span></h1>
+      <p class="sub">ブラウザで動く、HTMLだけのスライド作成ツール</p>
+      <p class="tiny"><kbd>→</kbd> キー か 画面クリックで次へ</p>
+    </section>
+
+    <!-- 2. 3ステップ -->
+    <section>
+      <h2>作り方は 3 ステップ</h2>
+      <ol class="steps">
+        <li>HTMLファイルを1つ作る</li>
+        <li><span><code>&lt;section&gt;</code> を書く(1つ = スライド1枚)</span></li>
+        <li>ブラウザで開く。それだけ!</li>
+      </ol>
+    </section>
+
+    <!-- 3. 最小コード -->
+    <section>
+      <h2>最小のコード</h2>
+      <pre><code class="language-html" data-trim data-noescape data-line-numbers>
+&lt;link rel="stylesheet" href=".../reveal.css"&gt;
+&lt;link rel="stylesheet" href=".../theme/black.css"&gt;
+
+&lt;div class="reveal"&gt;
+  &lt;div class="slides"&gt;
+    &lt;section&gt;スライド1&lt;/section&gt;
+    &lt;section&gt;スライド2&lt;/section&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src=".../reveal.js"&gt;&lt;/script&gt;
+&lt;script&gt;Reveal.initialize();&lt;/script&gt;
+      </code></pre>
+      <p class="tiny">見た目(CSS)を読み込む → 中身(section)を並べる → 起動(JS)</p>
+    </section>
+
+    <!-- 4. 便利機能 -->
+    <section>
+      <h2>属性を足すだけで「映える」</h2>
+      <div class="cards">
+        <div class="card"><span class="emoji">🎨</span><b>背景</b><code>data-background-color</code></div>
+        <div class="card"><span class="emoji">🪄</span><b>少しずつ表示</b><code>class="fragment"</code></div>
+        <div class="card"><span class="emoji">🎞️</span><b>ぬるっと動く</b><code>data-auto-animate</code></div>
+        <div class="card"><span class="emoji">📝</span><b>Markdown</b><code>data-markdown</code></div>
+        <div class="card"><span class="emoji">🎤</span><b>発表者メモ</b><code>&lt;aside class="notes"&gt;</code></div>
+        <div class="card"><span class="emoji">🔀</span><b>切り替え効果</b><code>data-transition="zoom"</code></div>
+      </div>
+    </section>
+
+    <!-- 5. キー操作+まとめ -->
+    <section data-background-gradient="linear-gradient(135deg,#0f172a,#312e81)">
+      <h2>まとめ</h2>
+      <ul class="check">
+        <li><code>&lt;section&gt;</code> 1つ = スライド1枚</li>
+        <li>属性を足すだけで動き・背景・メモが使える</li>
+        <li>下のキーを覚えれば発表もバッチリ</li>
+      </ul>
+      <div class="keys" style="margin-top:26px">
+        <div><kbd>Esc</kbd><span>一覧</span></div>
+        <div><kbd>F</kbd><span>全画面</span></div>
+        <div><kbd>S</kbd><span>発表者ビュー</span></div>
+        <div><kbd>?</kbd><span>ヘルプ</span></div>
+      </div>
+      <p class="tiny">公式サイト: revealjs.com</p>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
+<script>
+  Reveal.initialize({
+    hash: false,
+    slideNumber: 'c/t',
+    progress: true,
+    controls: true,
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    backgroundTransition: 'fade',
+    width: 1280,
+    height: 720,
+    margin: 0.06,
+    plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+  });
+</script>
+</body>
+</html>
